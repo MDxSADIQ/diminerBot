@@ -9,7 +9,7 @@ const codeModel = require("./codemodel")
 // earn coin code in progress 👨‍💻👨‍💻👨‍💻
 bot.onText(/\/earn_coins/, async (msg) => {
     let unique_code = v4();
-    console.log(unique_code)
+    
     const verifylink = `https://t.me/Diminer_bot?start=${unique_code}`
     
     const linkShotnerURL = `https://api.gplinks.com/api?api=6a22c09e932885905f2487ac3744cce3a20ccd76&url=${verifylink}`
@@ -57,7 +57,8 @@ bot.onText(/\/start\s*(.*)/, async (msg, match) => {
     let referinguser = await userModel.find({ chatId: resp })
 
     if (user.length === 1 && resp === "") {
-        bot.sendMessage(chatId, `you are old banda`)
+        bot.sendMessage(chatId, `Welcome to Diminer Bot! Want 🆓FREE🆓 Playstore Redeem Codes, Earn Diminer coins and exchange it to Redeem codes /earn_coins > watch Ads on website and get coins /refer > when a friend earns coins you also earn 20% and use /gen_code for claiming redeem codes.
+            `)
 
     }
    else if (user.length === 1 && referinguser.length === 1) {
@@ -72,8 +73,8 @@ bot.onText(/\/start\s*(.*)/, async (msg, match) => {
             referby: resp
         })
 
-        bot.sendMessage(chatId, `Welcome to Diminer Bot! Want 🆓FREE🆓 Playstore Redeem Codes, Earn Diminer coins and exchange it to Redeem codes /earn_coins > watch Ads on website and get coins /refer > when a friend earns coins you also earn 20%
-            (new user with refer)`)
+        bot.sendMessage(chatId, `Welcome to Diminer Bot! Want 🆓FREE🆓 Playstore Redeem Codes, Earn Diminer coins and exchange it to Redeem codes /earn_coins > watch Ads on website and get coins /refer > when a friend earns coins you also earn 20% and use /gen_code for claiming redeem codes.
+            `)
     }
     else if (resp === "" && user.length <= 0) {
         await userModel.create({
@@ -82,8 +83,7 @@ bot.onText(/\/start\s*(.*)/, async (msg, match) => {
             referby: "none"
         })
 
-        bot.sendMessage(chatId, `Welcome to Diminer Bot! Want 🆓FREE🆓 Playstore Redeem Codes, Earn Diminer coins and exchange it to Redeem codes /earn_coins > watch Ads on website and get coins /refer > when a friend earns coins you also earn 20%
-            (new user)`)
+        bot.sendMessage(chatId, `Welcome to Diminer Bot! Want 🆓FREE🆓 Playstore Redeem Codes, Earn Diminer coins and exchange it to Redeem codes /earn_coins > watch Ads on website and get coins /refer > when a friend earns coins you also earn 20% and use /gen_code for claiming redeem codes.`)
 
 
     }
