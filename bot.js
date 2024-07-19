@@ -20,7 +20,7 @@ bot.onText(/\/earn_coins/, async (msg) => {
     const opts = {
         reply_markup: {
             inline_keyboard: [
-                [{ text: "How to Watch Ad❓", url: "https://t.me/howtodownload_1/9" }],
+                [{ text: "How to Watch Ad❓", url: "https://t.me/diminer_guides/3" }],
                 [{ text: "🎥Watch Ad🎥", url: shortlink, callback_data: unique_code }]
             ]
         }
