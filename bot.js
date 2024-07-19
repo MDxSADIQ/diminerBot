@@ -206,7 +206,7 @@ bot.onText(/\/my_coins/, async (msg) => {
     const chatId = msg.chat.id
     let user = await userModel.findOne({ chatId: chatId })
     let userpoint = await user["points"]
-    console.log(user)
+    
     bot.sendMessage(chatId, `Your Coins🪙: ${userpoint}                   Earn more coins: /earn_coins`)
 })
 
