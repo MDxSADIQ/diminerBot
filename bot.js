@@ -32,16 +32,18 @@ bot.onText(/\/earn_coins/, async (msg) => {
         let referinguser = await userModel.find({ chatId:referd })
         let resp = match[1]
         if (resp === unique_code && user.referby === "none") {
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: user.points + 10 })
-            bot.sendMessage(msg.chat.id, "Congratulations! you earned 🪙10 coins ")
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: user.points + 1 })
+            bot.sendMessage(msg.chat.id, "Congratulations! you earned 🪙1 coins ")
+            unique_code = "dhdjhfjdjsjhfjfdj"
 
         }
         else if (resp === unique_code && referinguser.length === 1) {
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: user.points + 10 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: user.points + 1 })
             // referinguserpoints = (referinguser[1]).points
-            await userModel.findOneAndUpdate({ chatId: user.referby }, { points: (referinguser[0]).points + 2 })
-            bot.sendMessage(msg.chat.id, "Congratulations! you and your friend earned 🪙10 coins ")
-            bot.sendMessage(Number(user.referby), "Congratulations! you earned 🪙02 coins by refer ")
+            await userModel.findOneAndUpdate({ chatId: user.referby }, { points: (referinguser[0]).points + 0.2 })
+            bot.sendMessage(msg.chat.id, "Congratulations! you and your friend earned 🪙1 coins ")
+            bot.sendMessage(Number(user.referby), "Congratulations! you earned 🪙0.2 coins by refer ")
+            unique_code = "dhdjhfjdjsjhfjfdj"
 
         }
 
@@ -69,7 +71,7 @@ bot.onText(/\/start\s*(.*)/, async (msg, match) => {
     else if (referinguser.length === 1) {
         await userModel.create({
             chatId: chatId,
-            points: 100,
+            points: 0,
             referby: resp
         })
 
@@ -79,7 +81,7 @@ bot.onText(/\/start\s*(.*)/, async (msg, match) => {
     else if (resp === "" && user.length <= 0) {
         await userModel.create({
             chatId: chatId,
-            points: 140,
+            points: 0,
             referby: "none"
         })
 
@@ -95,10 +97,10 @@ bot.onText(/\/gen_code/, (msg) => {
         reply_to_message_id: msg.message_id,
         reply_markup: JSON.stringify({
             keyboard: [
-                ['🪙500  ➡️ 10 Rupees'],
-                ['🪙1200 ➡️ 30 Rupees'],
-                ['🪙2500 ➡️ 80 Rupees'],
-                ['🪙3500 ➡️ 100 Rupees'],
+                ['🪙50  ➡️ 10 Rupees'],
+                ['🪙120 ➡️ 30 Rupees'],
+                ['🪙250 ➡️ 80 Rupees'],
+                ['🪙350 ➡️ 100 Rupees'],
 
             ],
             input_field_placeholder: "Choose that you want",
@@ -110,10 +112,10 @@ bot.onText(/\/gen_code/, (msg) => {
    
 
 })
-bot.onText('🪙500  ➡️ 10 Rupees', async (msg) => {
+bot.onText('🪙50  ➡️ 10 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
-    if (aukaat >= 500) {
+    if (aukaat >= 50) {
         let codeobj = await codeModel.findOneAndDelete({ price: "10" })
         if (codeobj === null) {
             bot.sendMessage(msg.chat.id, `Sorry! 10 rupees Redeem code is not available now, you can get it after 1 or 2 hours`)
@@ -126,7 +128,7 @@ bot.onText('🪙500  ➡️ 10 Rupees', async (msg) => {
         }
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 500 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 50 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -134,7 +136,7 @@ bot.onText('🪙500  ➡️ 10 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙1200 ➡️ 30 Rupees', async (msg) => {
+bot.onText('🪙120 ➡️ 30 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
     if (aukaat >= 1200) {
@@ -149,7 +151,7 @@ bot.onText('🪙1200 ➡️ 30 Rupees', async (msg) => {
 
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 1200 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 120 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -157,7 +159,7 @@ bot.onText('🪙1200 ➡️ 30 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙2500 ➡️ 80 Rupees', async (msg) => {
+bot.onText('🪙250 ➡️ 80 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
     if (aukaat >= 2500) {
@@ -171,7 +173,7 @@ bot.onText('🪙2500 ➡️ 80 Rupees', async (msg) => {
         }
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 2500 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 250 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -179,7 +181,7 @@ bot.onText('🪙2500 ➡️ 80 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙3500 ➡️ 100 Rupees', async (msg) => {
+bot.onText('🪙350 ➡️ 100 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
     if (aukaat >= 3500) {
@@ -193,7 +195,7 @@ bot.onText('🪙3500 ➡️ 100 Rupees', async (msg) => {
         }
         else{
         let code = codeobj["code"]
-        await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 3500 })
+        await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 350 })
         bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)}
     }
     else {
