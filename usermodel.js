@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
         
         },
         points:{
-            type:Number,
+            type:mongoose.Types.Decimal128,
             default: 0
         },
         referby: String,
