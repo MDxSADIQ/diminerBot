@@ -97,10 +97,10 @@ bot.onText(/\/gen_code/, (msg) => {
         reply_to_message_id: msg.message_id,
         reply_markup: JSON.stringify({
             keyboard: [
-                ['🪙50  ➡️ 10 Rupees'],
-                ['🪙120 ➡️ 30 Rupees'],
-                ['🪙250 ➡️ 80 Rupees'],
-                ['🪙350 ➡️ 100 Rupees'],
+                ['🪙49  ➡️ 10 Rupees'],
+                ['🪙99 ➡️ 30 Rupees'],
+                ['🪙219 ➡️ 80 Rupees'],
+                ['🪙339 ➡️ 100 Rupees'],
 
             ],
             input_field_placeholder: "Choose that you want",
@@ -112,10 +112,10 @@ bot.onText(/\/gen_code/, (msg) => {
    
 
 })
-bot.onText('🪙50  ➡️ 10 Rupees', async (msg) => {
+bot.onText('🪙49  ➡️ 10 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
-    if (aukaat >= 50) {
+    if (aukaat >= 49) {
         let codeobj = await codeModel.findOneAndDelete({ price: "10" })
         if (codeobj === null) {
             bot.sendMessage(msg.chat.id, `Sorry! 10 rupees Redeem code is not available now, you can get it after 1 or 2 hours`)
@@ -128,7 +128,7 @@ bot.onText('🪙50  ➡️ 10 Rupees', async (msg) => {
         }
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 50 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 49 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -136,10 +136,10 @@ bot.onText('🪙50  ➡️ 10 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙120 ➡️ 30 Rupees', async (msg) => {
+bot.onText('🪙119 ➡️ 30 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
-    if (aukaat >= 1200) {
+    if (aukaat >= 119) {
         let codeobj = await codeModel.findOneAndDelete({ price: "30" })
         if (codeobj === null) {
             bot.sendMessage(msg.chat.id, `Sorry! 30 rupees Redeem code is not available now, you can get it after 1 or 2 hours`)
@@ -151,7 +151,7 @@ bot.onText('🪙120 ➡️ 30 Rupees', async (msg) => {
 
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 120 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 119 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -159,10 +159,10 @@ bot.onText('🪙120 ➡️ 30 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙250 ➡️ 80 Rupees', async (msg) => {
+bot.onText('🪙219 ➡️ 80 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
-    if (aukaat >= 2500) {
+    if (aukaat >= 219) {
         let codeobj = await codeModel.findOneAndDelete({ price: "80" })
         if (codeobj === null) {
             bot.sendMessage(msg.chat.id, `Sorry! 80 rupees Redeem code is not available now, you can get it after 1 or 2 hours`)
@@ -173,7 +173,7 @@ bot.onText('🪙250 ➡️ 80 Rupees', async (msg) => {
         }
         else {
             let code = codeobj["code"]
-            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 250 })
+            await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 219 })
             bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)
         }
     }
@@ -181,10 +181,10 @@ bot.onText('🪙250 ➡️ 80 Rupees', async (msg) => {
         bot.sendMessage(msg.chat.id, `❗You don't have enough coins❗       use: /earn_coins`)
     }
 })
-bot.onText('🪙350 ➡️ 100 Rupees', async (msg) => {
+bot.onText('🪙339 ➡️ 100 Rupees', async (msg) => {
     let user = await userModel.findOne({ chatId: msg.chat.id })
     let aukaat = user["points"]
-    if (aukaat >= 3500) {
+    if (aukaat >= 339) {
         let codeobj = await codeModel.findOneAndDelete({ price: "100" })
         if (codeobj === null) {
             bot.sendMessage(msg.chat.id, `Sorry! 100 rupees Redeem code is not available now, you can get it after 1 or 2 hours`)
@@ -195,7 +195,7 @@ bot.onText('🪙350 ➡️ 100 Rupees', async (msg) => {
         }
         else{
         let code = codeobj["code"]
-        await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 350 })
+        await userModel.findOneAndUpdate({ chatId: msg.chat.id }, { points: aukaat - 339 })
         bot.sendMessage(msg.chat.id, `This is Your code👉👉👉       ${code}`)}
     }
     else {
